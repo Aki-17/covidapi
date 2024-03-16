@@ -1,21 +1,31 @@
-h1{
-    color: red;
-    margin-left: 450px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
 }
 
-input{
-    border: 1px solid pink;
-    border-radius: 10px;
-    width:400px;
-    height: 50px;
-    margin-left: 400px;
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-button{
-    border: 1px solid pink;
-    border-radius: 10px;
-    width:200px;
-    height: 50px;
-    margin-left: -300px;
-    position: absolute;
-    top:200px;
+
+h1 {
+    text-align: center;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat h2 {
+    margin-bottom: 10px;
 }

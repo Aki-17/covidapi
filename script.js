@@ -1,19 +1,27 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const apiUrl = 'https://data.covid19india.org/v4/min/timeseries.min.json';
 
-var division = document.createElement('div')
-division.innerHTML=`<input type ="text" id="txt">
-<button type="button" onClick="covid19()">Search</button>`
-document.body.append(division);
+    const fetchData = () => {
+        return new Promise((resolve, reject) => {
+            fetch(apiUrl)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => resolve(data))
+                .catch(error => reject(error));
+        });
+    };
 
-async function covid19(){
-    let covid19 = document.getElementById('txt').value;
-    console.log(covid19);
+    const displayData = (data) => {
+        document.getElementById('total-cases').textContent = data.Global.TotalConfirmed;
+        document.getElementById('total-deaths').textContent = data.Global.TotalDeaths;
+        document.getElementById('total-recovered').textContent = data.Global.TotalRecovered;
+    };
 
-     let result = await fetch("https://data.covid19india.org/v4/min/timeseries.min.json")
-
-     let res = await result.json();
-     
-     console.log(res);
-
-     document.getElementById("covid").innerText="Covid19 overall cases: res"
-
-}
+    fetchData()
+        .then(data => displayData(data))
+        .catch(error => console.error('Error fetching data:', error));
+});
